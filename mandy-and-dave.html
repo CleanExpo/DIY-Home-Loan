@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandy & Dave Storybook | Mortgage to Wealth Machine</title>
+  <style>
+    :root {
+      --deep-green: #1a4d2e;
+      --light-cream: #f5f0e8;
+      --white: #ffffff;
+      --line: #d7cfbf;
+      --text: #173022;
+      --muted: #4c6757;
+      --good: #2f7c4d;
+      --alt: #8a6f4e;
+      --shadow: 0 10px 24px rgba(26, 77, 46, 0.12);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fbf8f3 0%, var(--light-cream) 100%);
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+    }
+
+    .hero {
+      background: var(--deep-green);
+      color: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 33px;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      color: #edf6f0;
+      line-height: 1.5;
+      max-width: 900px;
+    }
+
+    .stage-nav {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .stage-btn {
+      border: 1px solid #c5b8a3;
+      background: var(--white);
+      color: var(--deep-green);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .stage-btn.active {
+      background: var(--deep-green);
+      color: #fff;
+      border-color: var(--deep-green);
+    }
+
+    .content {
+      margin-top: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      color: var(--deep-green);
+      font-size: 22px;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .compare {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .path {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fffefc;
+    }
+
+    .path h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: var(--deep-green);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 999px;
+      padding: 4px 8px;
+      margin-bottom: 8px;
+    }
+
+    .tag.good {
+      background: #eaf6ee;
+      color: var(--good);
+      border: 1px solid #bfdcc9;
+    }
+
+    .tag.alt {
+      background: #f3ece3;
+      color: var(--alt);
+      border: 1px solid #dccbb4;
+    }
+
+    .path ul {
+      margin: 0;
+      padding-left: 1.1em;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .kpis {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .kpi {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fffdf9;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .kpi-value {
+      margin-top: 5px;
+      color: var(--deep-green);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .bars {
+      margin-top: 8px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 120px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .bar-track {
+      height: 14px;
+      border-radius: 999px;
+      border: 1px solid #d8cdbb;
+      overflow: hidden;
+      background: #efe6d9;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .bar.good { background: linear-gradient(90deg, #4f9d6f, #2f7c4d); }
+    .bar.alt { background: linear-gradient(90deg, #b79b79, #8a6f4e); }
+
+    .foot {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    @media (max-width: 980px) {
+      .stage-nav,
+      .compare,
+      .kpis {
+        grid-template-columns: 1fr;
+      }
+
+      .bar-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Mandy & Dave vs Jack & Diane</h1>
+      <p>
+        Interactive storybook across 8 life stages showing two paths: a disciplined DIY Home Loan
+        (Mortgage to Wealth Machine) versus a cheap-rate, investment-property-first approach.
+      </p>
+    </header>
+
+    <nav id="stageNav" class="stage-nav" aria-label="Life stages"></nav>
+
+    <section class="content">
+      <article class="panel">
+        <h2 id="stageTitle">Stage</h2>
+        <p id="stageSummary" class="sub"></p>
+
+        <div class="compare">
+          <div class="path">
+            <span class="tag good">Mandy & Dave</span>
+            <h3>Mortgage to Wealth Machine</h3>
+            <ul id="goodList"></ul>
+          </div>
+          <div class="path">
+            <span class="tag alt">Jack & Diane</span>
+            <h3>Cheap Rate + IP First</h3>
+            <ul id="altList"></ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Wealth Comparison at This Stage</h2>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="kpi-label">Mandy & Dave Net Position</div>
+            <div id="goodNet" class="kpi-value">$0</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Jack & Diane Net Position</div>
+            <div id="altNet" class="kpi-value">$0</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Difference</div>
+            <div id="delta" class="kpi-value">$0</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Life Stage</div>
+            <div id="ageBand" class="kpi-value">Age</div>
+          </div>
+        </div>
+
+        <div class="bars">
+          <div class="bar-row">
+            <div>Mandy & Dave</div>
+            <div class="bar-track"><div id="goodBar" class="bar good"></div></div>
+            <div id="goodBarLabel">$0</div>
+          </div>
+          <div class="bar-row">
+            <div>Jack & Diane</div>
+            <div class="bar-track"><div id="altBar" class="bar alt"></div></div>
+            <div id="altBarLabel">$0</div>
+          </div>
+        </div>
+
+        <p class="foot">
+          Educational illustration only. Scenarios are directional and simplified for storytelling.
+          They are not personal financial advice.
+        </p>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    const stages = [
+      {
+        label: "Stage 1: Age 20-25",
+        age: "20-25",
+        title: "First Steps and Financial Habits",
+        summary: "Both couples start with similar income, ambitions, and a first home target.",
+        good: [
+          "Start with budget discipline and debt awareness.",
+          "Choose manageable property value and avoid overreach.",
+          "Set household systems early (budget, insurance, annual review)."
+        ],
+        alt: [
+          "Focus on minimum repayment and rate chasing only.",
+          "Use spare cash inconsistently with no formal plan.",
+          "Delay key protections and governance tasks."
+        ],
+        goodNet: 20000,
+        altNet: 12000
+      },
+      {
+        label: "Stage 2: Age 26-30",
+        age: "26-30",
+        title: "Home Purchase and Loan Structure",
+        summary: "Mandy & Dave adopt GISI + LOC discipline while Jack & Diane pursue lowest headline rate.",
+        good: [
+          "Set up GISI home loan + LOC with clear purpose.",
+          "Surplus cash directed to GISI principal reduction.",
+          "Annual rules checklist starts from day one."
+        ],
+        alt: [
+          "Take cheap rate with offset comfort but low principal urgency.",
+          "Add investment property quickly with thinner buffers.",
+          "No behavior framework during volatility."
+        ],
+        goodNet: 90000,
+        altNet: 65000
+      },
+      {
+        label: "Stage 3: Age 31-35",
+        age: "31-35",
+        title: "Family and Pressure Test",
+        summary: "Life gets busy. The plan either holds or drifts.",
+        good: [
+          "Rules maintain consistency during family cost increases.",
+          "Insurance and tax planning reviewed annually.",
+          "Debt trajectory remains downward each year."
+        ],
+        alt: [
+          "Cash flow pressure causes reactive decisions.",
+          "Debt limits rise faster than strategy maturity.",
+          "Professional reviews are ad hoc, not coordinated."
+        ],
+        goodNet: 220000,
+        altNet: 145000
+      },
+      {
+        label: "Stage 4: Age 36-40",
+        age: "36-40",
+        title: "Market Volatility Event",
+        summary: "A volatility cycle separates structured behavior from emotion-led behavior.",
+        good: [
+          "Continue plan through volatility using rules as guardrails.",
+          "Investment draws stay aligned to GISI savings discipline.",
+          "No panic selling decisions."
+        ],
+        alt: [
+          "Pause or reverse strategy after market noise.",
+          "Short-term fear overrides long-term plan.",
+          "Principal reduction stalls."
+        ],
+        goodNet: 390000,
+        altNet: 250000
+      },
+      {
+        label: "Stage 5: Age 41-45",
+        age: "41-45",
+        title: "Momentum Years",
+        summary: "Compounding starts to become visible.",
+        good: [
+          "Debt keeps falling; super and investment assets keep building.",
+          "Annual reviews keep all 20-rule behavior in focus.",
+          "Family decisions align with financial objectives."
+        ],
+        alt: [
+          "Portfolio complexity grows without a unified operating system.",
+          "Debt and lifestyle expansion reduce flexibility.",
+          "Returns become less predictable after fees and friction."
+        ],
+        goodNet: 680000,
+        altNet: 430000
+      },
+      {
+        label: "Stage 6: Age 46-50",
+        age: "46-50",
+        title: "Second Wind and Strategic Optionality",
+        summary: "By now, discipline creates choice rather than pressure.",
+        good: [
+          "Higher resilience from lower debt and better risk settings.",
+          "Opportunity cost decisions are deliberate and evidence-based.",
+          "Advisers engaged at the right times with clear briefs."
+        ],
+        alt: [
+          "Still managing stress from mixed debt and unclear priorities.",
+          "Decision fatigue from fragmented advice paths.",
+          "More effort needed for less progress."
+        ],
+        goodNet: 980000,
+        altNet: 610000
+      },
+      {
+        label: "Stage 7: Age 51-55",
+        age: "51-55",
+        title: "Pre-Retirement Positioning",
+        summary: "The quality of the previous 25 years becomes obvious.",
+        good: [
+          "GISI goal line approaches with strong confidence.",
+          "Super, equity, and liquidity now work together.",
+          "Estate and legal settings are current."
+        ],
+        alt: [
+          "May still carry uncomfortable debt load.",
+          "Retirement readiness depends on market timing luck.",
+          "Less room for strategic mistakes."
+        ],
+        goodNet: 1320000,
+        altNet: 840000
+      },
+      {
+        label: "Stage 8: Age 56-67",
+        age: "56-67",
+        title: "Retirement Transition",
+        summary: "One path arrives organized and resilient; the other often still catches up.",
+        good: [
+          "Home loan paid down by target age range.",
+          "Self-driving wealth system remains active in retirement.",
+          "Family, legacy, and income planning are integrated."
+        ],
+        alt: [
+          "Higher chance of debt drag into retirement years.",
+          "Greater reliance on external market outcomes.",
+          "More complexity with less control."
+        ],
+        goodNet: 1820000,
+        altNet: 1120000
+      }
+    ];
+
+    const stageNav = document.getElementById("stageNav");
+    const stageTitle = document.getElementById("stageTitle");
+    const stageSummary = document.getElementById("stageSummary");
+    const goodList = document.getElementById("goodList");
+    const altList = document.getElementById("altList");
+    const goodNet = document.getElementById("goodNet");
+    const altNet = document.getElementById("altNet");
+    const delta = document.getElementById("delta");
+    const ageBand = document.getElementById("ageBand");
+    const goodBar = document.getElementById("goodBar");
+    const altBar = document.getElementById("altBar");
+    const goodBarLabel = document.getElementById("goodBarLabel");
+    const altBarLabel = document.getElementById("altBarLabel");
+
+    const maxNet = Math.max(...stages.map((s) => Math.max(s.goodNet, s.altNet)));
+
+    function money(value) {
+      return new Intl.NumberFormat("en-AU", {
+        style: "currency",
+        currency: "AUD",
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    function renderList(element, items) {
+      element.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function renderStage(index) {
+      const stage = stages[index];
+      stageTitle.textContent = stage.title;
+      stageSummary.textContent = stage.summary;
+      renderList(goodList, stage.good);
+      renderList(altList, stage.alt);
+
+      const diff = stage.goodNet - stage.altNet;
+      goodNet.textContent = money(stage.goodNet);
+      altNet.textContent = money(stage.altNet);
+      delta.textContent = money(diff);
+      ageBand.textContent = stage.age;
+
+      const goodPct = (stage.goodNet / maxNet) * 100;
+      const altPct = (stage.altNet / maxNet) * 100;
+      goodBar.style.width = `${goodPct}%`;
+      altBar.style.width = `${altPct}%`;
+      goodBarLabel.textContent = money(stage.goodNet);
+      altBarLabel.textContent = money(stage.altNet);
+
+      document.querySelectorAll(".stage-btn").forEach((btn, i) => {
+        btn.classList.toggle("active", i === index);
+      });
+    }
+
+    stages.forEach((stage, index) => {
+      const button = document.createElement("button");
+      button.className = "stage-btn";
+      button.type = "button";
+      button.textContent = stage.label;
+      button.addEventListener("click", () => renderStage(index));
+      stageNav.appendChild(button);
+    });
+
+    renderStage(0);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FITTER Financial Services | Duncan Perkins</title>
+  <style>
+    :root {
+      --deep-green: #1a4d2e;
+      --light-cream: #f5f0e8;
+      --white: #ffffff;
+      --text: #163021;
+      --muted: #4b6455;
+      --line: #d8d0c4;
+      --radius: 14px;
+      --shadow: 0 10px 24px rgba(26, 77, 46, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #faf8f2 0%, var(--light-cream) 100%);
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+    }
+
+    .hero {
+      background: var(--deep-green);
+      color: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    h1 {
+      margin: 8px 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+
+    .tagline {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 600;
+      color: #eff7f2;
+    }
+
+    .hero-video {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .hero-video:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-video-wrap {
+      margin-top: 18px;
+      max-width: 520px;
+    }
+
+    .hero-video-note {
+      margin: 10px 0 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .hero-product {
+      margin: 14px 0 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #e8f2ec;
+      line-height: 1.35;
+    }
+
+    .hero-product span {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.92;
+    }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .structure-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fffdf9;
+      padding: 14px;
+    }
+
+    .structure-card h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--deep-green);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .structure-card ul {
+      margin: 0;
+      padding-left: 1.1em;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .fine-print {
+      margin-top: 14px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+    }
+
+    .callout h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--deep-green);
+    }
+
+    .callout p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .callout a {
+      color: var(--deep-green);
+      font-weight: 700;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .tab-btn {
+      border: 1px solid #c8bcac;
+      background: var(--white);
+      color: var(--deep-green);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-1px);
+      border-color: #ad9f8c;
+    }
+
+    .tab-btn.active {
+      background: var(--deep-green);
+      color: var(--white);
+      border-color: var(--deep-green);
+    }
+
+    .panel {
+      display: none;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--deep-green);
+    }
+
+    .subtext {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fffdf9;
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      color: var(--deep-green);
+      font-size: 17px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .kpi {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fffdfa;
+      padding: 12px;
+    }
+
+    .kpi-label {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .kpi-value {
+      margin-top: 6px;
+      color: var(--deep-green);
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .meter-wrap {
+      margin-top: 8px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid #cdc2b4;
+      background: #ece4d8;
+      overflow: hidden;
+    }
+
+    .meter {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #3f7d5b, var(--deep-green));
+      transition: width 0.2s ease;
+    }
+
+    .rules-list {
+      margin-top: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .rule-item {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .rule-item input {
+      margin-top: 2px;
+      transform: scale(1.15);
+      accent-color: var(--deep-green);
+    }
+
+    .fit-list {
+      margin-top: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .fit-row {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .fit-controls {
+      display: inline-flex;
+      gap: 8px;
+    }
+
+    .fit-btn {
+      border: 1px solid #bfb2a1;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--deep-green);
+      font-weight: 700;
+      min-width: 56px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    .fit-btn.yes-active {
+      border-color: var(--deep-green);
+      background: #ebf4ef;
+    }
+
+    .fit-btn.no-active {
+      border-color: #9a8570;
+      background: #f2ebe0;
+    }
+
+    .framework-grid {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .framework-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fffdf9;
+      padding: 14px;
+      min-height: 170px;
+    }
+
+    .framework-card h3 {
+      margin: 0 0 8px;
+      color: var(--deep-green);
+    }
+
+    .framework-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .story-block {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .story-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fffdfa;
+      padding: 14px;
+    }
+
+    .story-item h3 {
+      margin: 0 0 8px;
+      color: var(--deep-green);
+    }
+
+    .story-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .story-item a {
+      color: var(--deep-green);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .story-item a:hover {
+      text-decoration: underline;
+    }
+
+    .member-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .plan-card,
+    .fitzy-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .plan-card h3,
+    .fitzy-card h3 {
+      margin: 0 0 10px;
+      color: var(--deep-green);
+      font-size: 17px;
+    }
+
+    .plan-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .plan-row {
+      display: grid;
+      gap: 4px;
+    }
+
+    .plan-row label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .plan-row input {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    .plan-row input[readonly] {
+      background: #f4efe6;
+      color: #5f6b61;
+      cursor: not-allowed;
+    }
+
+    .plan-note {
+      margin: 10px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .member-main {
+      display: grid;
+      gap: 14px;
+    }
+
+    .budget-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fffdf9;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .evidence-list {
+      margin: 10px 0 0;
+      padding-left: 1.1em;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .evidence-list li {
+      margin-bottom: 4px;
+    }
+
+    .privacy-warning {
+      margin-top: 10px;
+      border: 1px solid #e5b39a;
+      background: #fff4ef;
+      color: #7f3822;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .budget-card h3 {
+      margin: 0 0 10px;
+      color: var(--deep-green);
+      font-size: 17px;
+    }
+
+    .budget-grid {
+      display: grid;
+      grid-template-columns: 1fr 130px;
+      gap: 8px 10px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .budget-grid label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .budget-grid input {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .budget-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .budget-btn {
+      border: 1px solid #c5b8a6;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--deep-green);
+      font-weight: 700;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .budget-btn.primary {
+      border: none;
+      background: var(--deep-green);
+      color: #fff;
+    }
+
+    .budget-summary {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .budget-kpi {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .budget-kpi .kpi-label {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .budget-kpi .kpi-value {
+      margin-top: 6px;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--deep-green);
+    }
+
+    .fitzy-chat {
+      display: flex;
+      flex-direction: column;
+      height: min(420px, 55vh);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fffdf9;
+      overflow: hidden;
+    }
+
+    .fitzy-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .fitzy-msg {
+      max-width: 92%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .fitzy-msg.fitzy {
+      align-self: flex-start;
+      background: #ebf4ef;
+      border: 1px solid #bfdcc9;
+    }
+
+    .fitzy-msg.user {
+      align-self: flex-end;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .fitzy-input-row {
+      display: flex;
+      gap: 8px;
+      padding: 10px;
+      border-top: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .fitzy-input-row input {
+      flex: 1;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    .fitzy-input-row button {
+      border: none;
+      border-radius: 10px;
+      background: var(--deep-green);
+      color: var(--white);
+      font-weight: 700;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+
+    .fitzy-input-row button:hover {
+      filter: brightness(1.05);
+    }
+
+    @media (max-width: 900px) {
+      .grid-3,
+      .kpi-grid,
+      .framework-grid,
+      .structure-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .member-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .budget-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .budget-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <p class="brand">FITTER Financial Services by Duncan Perkins</p>
+      <h1>FITTER Financial Services</h1>
+      <p class="tagline">The Self-Driving Vehicle for Financial Wellbeing</p>
+      <p class="hero-product">
+        Mortgage to Wealth Machine
+        <span>Stop paying off a mortgage. Start building a wealth machine.</span>
+      </p>
+      <div class="hero-video-wrap">
+        <a class="hero-video" href="https://www.youtube.com/watch?v=i-yvS9mRrPU" target="_blank" rel="noopener noreferrer">DIY Home Loan — overview (video)</a>
+        <p class="hero-video-note">
+          Introductory context only. Some figures and product details in the recording may be outdated or incorrect; use this site and current program materials as the source of truth.
+        </p>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Main tabs">
+      <button class="tab-btn active" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="diy">DIY Home Loan</button>
+      <button class="tab-btn" data-tab="fit">Am I a good fit?</button>
+      <button class="tab-btn" data-tab="framework">FITTER Framework</button>
+      <button class="tab-btn" data-tab="story">Our Story</button>
+      <button class="tab-btn" data-tab="member">Member</button>
+    </nav>
+
+    <section id="home" class="panel active">
+      <h2>Welcome</h2>
+      <p class="subtext">
+        FITTER is a practical, step-by-step approach to financial fitness: discipline, support, and educated
+        guesses over endless analysis.         The DIY Home Loan — the <strong>Mortgage to Wealth Machine</strong> — pairs a principal home loan (GISI)
+        with an investment line of credit (LOC) and twenty annual rules so discipline holds through market
+        cycles. It is for households moving from a loan that feels stuck to a self-driving plan for debt,
+        wealth, and retirement.
+      </p>
+
+      <div class="callout">
+        <h3>Your AI concierge team</h3>
+        <p>
+          You are not expected to juggle brokers, financial planners, accountants, and lawyers on your own.
+          FITTER’s purpose-built AI agents act as concierges: they explain what matters, prepare you for each
+          stage, and coordinate engagement with the right professionals across the life of the loan and your
+          broader wealth journey—so the human experts show up when you need them, not before.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>FITTER Framework</h3>
+          <p>
+            A complete planning model covering Finance, Insurance, Taxation, Trusts, Estate planning and
+            Retirement planning to improve outcomes across the whole household.
+          </p>
+        </article>
+        <article class="card">
+          <h3>DIY Home Loan</h3>
+          <p>
+            The same structure described in the Mortgage to Wealth Machine proposal: GISI + LOC, surplus to
+            the home loan, investment draws matched to that discipline, and fee discounts tied to rules met.
+            Your checklist here tracks annual compliance; AI concierges and professionals support delivery.
+          </p>
+        </article>
+        <article class="card">
+          <h3>FITTERVille</h3>
+          <p>
+            The digital home for ongoing education, community, and concierge-style AI support—so your DIY
+            discipline and your professional relationships stay connected year after year.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="diy" class="panel">
+      <h2>DIY Home Loan — 20 Rules Checklist</h2>
+      <p class="subtext">
+        <strong>Mortgage to Wealth Machine:</strong> the rules are the product differentiator — reviewed annually,
+        they keep borrowers building wealth through volatility instead of abandoning the strategy at the
+        first scare. Tick each rule as you complete it. Discount: <strong>$250</strong> per <strong>5</strong> rules met; annual review
+        fee <strong>$1,000</strong> before discounts (meet all 20 and the review fee can be fully offset by discounts).
+      </p>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <h4>Loan A — GISI home loan</h4>
+          <ul>
+            <li>Principal home; budget surplus paid here</li>
+            <li>No offset; no redraw — paid down before age 67</li>
+          </ul>
+        </div>
+        <div class="structure-card">
+          <h4>Loan B — Line of credit (LOC)</h4>
+          <ul>
+            <li>Investment facility only (ETFs, gold, managed funds, business, etc.)</li>
+            <li>Draws aligned to discipline on Loan A; LOC interest generally tax-deductible</li>
+          </ul>
+        </div>
+      </div>
+      <p class="fine-print">
+        Rates, fees, and product availability are indicative and subject to lender approval. This page is
+        educational only and does not constitute personal financial advice.
+      </p>
+      <div class="callout">
+        <h3>How this fits with support</h3>
+        <p>
+          “DIY” here means you own the plan and the rhythm—not that you are unsupported. FITTER’s AI agents
+          guide you through what each rule means, what to gather, and when to bring in a broker, planner,
+          accountant, or lawyer. They stay with you over the years so professional help is timely and
+          coordinated, not ad hoc.
+        </p>
+      </div>
+
+      <div class="meter-wrap" aria-hidden="true">
+        <div id="ruleMeter" class="meter"></div>
+      </div>
+
+      <div class="kpi-grid">
+        <article class="kpi">
+          <div class="kpi-label">Rules Met</div>
+          <div id="rulesMet" class="kpi-value">0 / 20</div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-label">Discount Earned</div>
+          <div id="discountEarned" class="kpi-value">$0</div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-label">Fee Payable</div>
+          <div id="feePayable" class="kpi-value">$1,000</div>
+        </article>
+      </div>
+
+      <div id="rulesList" class="rules-list"></div>
+    </section>
+
+    <section id="fit" class="panel">
+      <h2>Am I a good fit?</h2>
+      <p class="subtext">Select Yes or No for each criterion and view your live fit score and rating.</p>
+
+      <div id="fitList" class="fit-list"></div>
+
+      <div class="kpi-grid">
+        <article class="kpi">
+          <div class="kpi-label">Yes Answers</div>
+          <div id="yesCount" class="kpi-value">0 / 9</div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-label">Fit Score</div>
+          <div id="fitScore" class="kpi-value">0%</div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-label">Fit Rating</div>
+          <div id="fitRating" class="kpi-value">Needs Review</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="framework" class="panel">
+      <h2>FITTER Framework</h2>
+      <p class="subtext">
+        The FITTER model aligns six planning pillars so decisions in one area support the others. From the
+        book's perspective, this is about practical control: simple, consistent decisions you understand and
+        can sustain.
+      </p>
+
+      <div class="framework-grid">
+        <article class="framework-card">
+          <h3>Finance</h3>
+          <p>
+            Understanding income, expenses, budgeting, and saving. Know where your money is, how your
+            budget works, and what your debt is doing, with simple structures you can maintain.
+          </p>
+        </article>
+        <article class="framework-card">
+          <h3>Insurance</h3>
+          <p>
+            Protecting what matters most. Review life, TPD, trauma, income protection and general insurance
+            regularly so your household remains resilient as life and responsibilities change.
+          </p>
+        </article>
+        <article class="framework-card">
+          <h3>Taxation</h3>
+          <p>
+            Working with the system efficiently. Make tax planning proactive, keep records current, lodge on
+            time, and align strategy with professional advice to reduce avoidable leakage.
+          </p>
+        </article>
+        <article class="framework-card">
+          <h3>Trusts</h3>
+          <p>
+            Advanced wealth protection strategies. Trusts are about clarity before complexity, with ownership
+            and control structures aligned to family and business objectives.
+          </p>
+        </article>
+        <article class="framework-card">
+          <h3>Estate planning</h3>
+          <p>
+            Planning for your legacy. A clear, valid will and current legal documents protect loved ones,
+            reduce conflict, and ensure your intentions are carried through.
+          </p>
+        </article>
+        <article class="framework-card">
+          <h3>Retirement planning</h3>
+          <p>
+            Building wealth for the future. Define what retirement means for you early, then build toward it
+            with disciplined contributions, compounding, and realistic long-term income planning.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="story" class="panel">
+      <h2>Our Story</h2>
+      <div class="story-block">
+        <article class="story-item">
+          <h3>Duncan Perkins</h3>
+          <p>
+            Duncan Perkins has 40 years in financial services since 1984 at Westpac. He is the founder of
+            Tax Time Accountants, Home Loan Essentials and FITTER Financial Services, and author of
+            <em>Getting FITTER Financially</em>. The Mortgage to Wealth Machine structure has been refined and
+            delivered across lenders for approximately two decades.
+          </p>
+        </article>
+        <article class="story-item">
+          <h3>Contact</h3>
+          <p>
+            <a href="mailto:duncan@homeloanessentials.com.au">duncan@homeloanessentials.com.au</a><br>
+            <a href="tel:+61414633555">0414 633 555</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="member" class="panel">
+      <h2>Member area — Fitzy</h2>
+      <p class="subtext">
+        Fitzy is your Master DIY Agent: it remembers where you left off, ties your numbers to the GISI + LOC
+        flow (as in the DIY overview), and prioritises which rules to tackle for your end-of-year target.
+        Figures below are <strong>yours</strong> — they change each quarter as your household budget improves;
+        the PDF diagram is only an example.
+      </p>
+
+      <div class="callout">
+        <h3>Before Fitzy can help with your budget</h3>
+        <p>
+          Fitzy needs you to <strong>work with the process</strong>. The budget is only ever as good as
+          <strong>you</strong> allow it to be — honest inputs and a simple routine beat a perfect spreadsheet you never update.
+        </p>
+        <p><strong>Tip 1 — build a download habit</strong> (bank + cards every month or quarter):</p>
+        <ul style="margin:0 0 0 1.1em;line-height:1.55;color:var(--muted);font-size:14px;">
+          <li>Bank statements (every account you use)</li>
+          <li>Credit card statements (every card)</li>
+          <li>Payslips or other income evidence (self-employed / trust: a clear household summary)</li>
+          <li>Cash spends and cash income (often the hidden gap)</li>
+          <li>Family loans — money in, repayments out</li>
+          <li>Known future spends — holidays, medical, car, insurance renewals, school, gifts</li>
+        </ul>
+        <p style="margin-top:10px;color:var(--muted);font-size:14px;line-height:1.5;">
+          Every great journey starts with a step in the right direction. Your first budget will not be perfect —
+          neither will your 5th or your 10th — life brings improvements and setbacks. We just keep refining each quarter.
+        </p>
+        <p style="margin-top:10px;color:var(--muted);font-size:14px;line-height:1.5;">
+          <strong>Start here on this page:</strong> connect <strong>Open Banking</strong> so Fitzy can pull transactions and build your
+          quarterly budget for you — you do not type the monthly budget by hand. Use the <strong>Connect Open Banking</strong> card next.
+        </p>
+      </div>
+
+      <div class="member-layout">
+        <div class="member-main">
+          <div class="plan-card">
+            <h3>Your plan snapshot (this quarter)</h3>
+            <div class="plan-grid">
+              <div class="plan-row">
+                <label for="planMarket">Market value (home)</label>
+                <input id="planMarket" type="text" inputmode="decimal" placeholder="e.g. 1000000" autocomplete="off" />
+              </div>
+              <div class="plan-row">
+                <label for="planDiyTotal">DIY total limit</label>
+                <input id="planDiyTotal" type="text" inputmode="decimal" placeholder="e.g. 600000" autocomplete="off" />
+              </div>
+              <div class="plan-row">
+                <label for="planGisi">GISI limit</label>
+                <input id="planGisi" type="text" inputmode="decimal" placeholder="e.g. 500000" autocomplete="off" />
+              </div>
+              <div class="plan-row">
+                <label for="planLoc">LOC limit</label>
+                <input id="planLoc" type="text" inputmode="decimal" placeholder="e.g. 100000" autocomplete="off" />
+              </div>
+              <div class="plan-row">
+                <label for="planExtraPm">Budget surplus → GISI (per month)</label>
+                <input id="planExtraPm" type="text" inputmode="decimal" placeholder="Auto-set by Fitzy from completed budget" autocomplete="off" readonly />
+              </div>
+              <div class="plan-row">
+                <label for="planQuarter">Quarter label</label>
+                <input id="planQuarter" type="text" placeholder="e.g. 2026 Q2" autocomplete="off" />
+              </div>
+            </div>
+            <p class="plan-note">
+              Save updates your local device only (demo). A live site would load this from your broker and your
+              latest household budget.
+            </p>
+            <p class="plan-note">
+              Note: <strong>Budget surplus → GISI</strong> is set by Fitzy after budget completion and cannot be typed manually by the member.
+            </p>
+            <button type="button" id="planSave" style="margin-top:12px;padding:10px 16px;border-radius:10px;border:none;background:var(--deep-green);color:#fff;font-weight:700;cursor:pointer;">
+              Save plan snapshot
+            </button>
+          </div>
+
+          <div class="budget-card" id="openBankingCard">
+            <h3>Connect Open Banking — send data to Fitzy</h3>
+            <p class="subtext">
+              If you applied for a home loan through a broker, you may already have used <strong>Frollo for Brokers</strong>.
+              For your <strong>ongoing quarterly DIY budget</strong>, the usual path is the consumer app
+              (<strong>Frollo for You</strong>) so you can keep accounts linked under Consumer Data Right and share what Fitzy needs.
+            </p>
+            <p class="subtext">
+              <strong>Why from inside DIY?</strong> You start here so the journey stays on this site: Fitzy tells you what to connect,
+              then opens the accredited app in a new tab. When the integration is live, CDR consent can sit fully inside DIY.
+            </p>
+            <p class="subtext">
+              <a href="https://frollo.com.au/frollo-app/" target="_blank" rel="noopener noreferrer">Frollo app (Frollo for You)</a>
+              — Open Banking account linking, categorised transactions, and export options many members already use with brokers.
+            </p>
+            <div class="budget-actions">
+              <a
+                class="budget-btn primary"
+                href="https://frollo.com.au/frollo-app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="text-decoration: none; text-align: center; display: inline-block"
+                >Open Frollo (CDR) — new tab</a>
+              <button type="button" id="btnFrolloStarted" class="budget-btn">I’ve started the Open Banking link</button>
+              <button type="button" id="btnBrokerSendsData" class="budget-btn">My broker is sending this quarter to Fitzy</button>
+            </div>
+            <p class="plan-note">
+              <strong>Roadmap:</strong> when DIY is large enough, it can run its own in-site Open Banking–style consent so members never leave this website for feeds. Until then, this flow plus broker handoff below is the practical path.
+            </p>
+            <p class="plan-note">
+              <strong>Broker handoff:</strong> if your broker (e.g. Jack) already has your application-time Open Banking exports or summaries, they can push the quarter’s package to Fitzy so you do not repeat the same linking. If they need more, they only chase you for gaps — that helps you <em>and</em> exposes brokers to how DIY runs quarter to quarter.
+            </p>
+            <p class="plan-note">
+              Other accredited Open Banking apps can work too — pick them in the Evidence Inbox. Fitzy builds
+              the budget from the feed plus payslips and future-spend notes you provide.
+            </p>
+          </div>
+
+          <div class="budget-card" id="brokerInviteCard">
+            <h3>Broker invite &amp; permission</h3>
+            <p class="subtext">
+              Fitzy can ask for your broker’s email if they may already have Open Banking / application data (e.g. Frollo for Brokers).
+              <strong>You must explicitly allow</strong> Fitzy to work with your broker and for your broker to upload to your member area.
+              That strengthens your relationship with your broker and helps them see how DIY supports you each quarter.
+            </p>
+            <div class="plan-grid" style="margin-top:10px;">
+              <div class="plan-row">
+                <label for="brokerName">Broker name (optional)</label>
+                <input id="brokerName" type="text" placeholder="e.g. Jack Perkins" autocomplete="name" />
+              </div>
+              <div class="plan-row">
+                <label for="brokerEmail">Broker email</label>
+                <input id="brokerEmail" type="email" placeholder="broker@example.com.au" autocomplete="email" />
+              </div>
+            </div>
+            <label style="display:flex;gap:8px;align-items:flex-start;margin-top:12px;color:var(--muted);font-size:13px;">
+              <input id="brokerPermission" type="checkbox" style="margin-top:2px;" />
+              <span>
+                I authorise Fitzy to contact my broker about this quarter’s budget evidence, and I invite my broker to use the link
+                below to upload statements, payslips, and other files to <strong>my</strong> member area on my behalf.
+              </span>
+            </label>
+            <div class="budget-actions" style="margin-top:12px;">
+              <button type="button" id="btnSaveBroker" class="budget-btn">Save broker details</button>
+              <button type="button" id="btnCreateBrokerInvite" class="budget-btn primary">Create broker upload invite</button>
+            </div>
+            <pre
+              id="brokerInvitePreview"
+              style="display:none;margin-top:12px;padding:12px;border-radius:10px;background:#f4efe6;border:1px solid var(--line);font-size:12px;white-space:pre-wrap;word-break:break-all;color:var(--text);"
+            ></pre>
+            <p id="brokerInviteStatus" class="plan-note" style="margin-top:8px;"></p>
+            <a id="brokerMailto" href="#" style="display:none;margin-top:8px;font-weight:700;color:var(--deep-green);">Open email to broker (demo)</a>
+          </div>
+
+          <div class="budget-card">
+            <h3>Fitzy Evidence Inbox (secure intake step)</h3>
+            <p class="subtext">
+              After you connect Open Banking (or if you use CSV/OFX instead), add payslips and notes on cash, family loans, and
+              future spends so Fitzy can finish the budget. Fitzy builds the numbers — you supply consent and evidence.
+            </p>
+            <ul class="evidence-list">
+              <li>Priority 1: payslips (to help estimate net income)</li>
+              <li>Priority 2: bank statements + credit card statements (last 90 days)</li>
+              <li>Priority 3: NOA/tax return (only if needed and TFN fully removed)</li>
+              <li>Priority 4: future spends (holidays, medical, car, insurance, gifts, school)</li>
+            </ul>
+            <div class="plan-row" style="margin-top:10px;">
+              <label for="evFiles">Upload files</label>
+              <input id="evFiles" type="file" multiple />
+            </div>
+            <label style="display:flex;gap:8px;align-items:flex-start;margin-top:10px;color:var(--muted);font-size:13px;">
+              <input id="evTfnConfirm" type="checkbox" style="margin-top:2px;" />
+              <span>I confirm all TFNs have been removed/redacted from uploaded files.</span>
+            </label>
+            <div class="privacy-warning">
+              TFN safety gate: if TFN is present, upload must be rejected and re-submitted after redaction.
+              This follows Australian privacy obligations for handling sensitive identifiers (Privacy Act 1988,
+              APP 3/6/11, and Privacy (Tax File Number) Rule 2015).
+            </div>
+            <div class="budget-actions">
+              <button type="button" id="evQueue" class="budget-btn primary">Add to Fitzy queue</button>
+              <button type="button" id="evApiNote" class="budget-btn">Show bank API note</button>
+            </div>
+            <p id="evStatus" class="plan-note">No files queued yet.</p>
+            <div class="plan-row" style="margin-top:12px;">
+              <label for="ingestMethod">Choose your quarterly import method</label>
+              <select id="ingestMethod" style="border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px;">
+                <option value="">Select one…</option>
+                <option value="frollo">Frollo app (Open Banking — recommended)</option>
+                <option value="api">Other Open Banking / API feed</option>
+                <option value="bank-csv">Direct bank export: CSV/OFX upload</option>
+                <option value="pdf-convert">PDF statement converter tool</option>
+                <option value="manual">Manual evidence only (no live feed)</option>
+              </select>
+            </div>
+            <p class="plan-note">
+              Fitzy tip: keep it simple if you can — one main transaction account, one credit card, and your two core loans
+              (GISI + LOC). Less complexity = cleaner quarterly reviews.
+            </p>
+            <p class="plan-note">
+              Program note: GISI and LOC can use direct lender API access when on the White Label Home Loan program.
+              External lenders may require alternate import methods.
+            </p>
+          </div>
+
+          <div class="budget-card">
+            <h3>Your budget (Rule 3) — Fitzy builds this</h3>
+            <p class="subtext">
+              Members do <strong>not</strong> type monthly budget categories here. Fitzy fills this from Open Banking (e.g. Frollo),
+              lender feeds where available (GISI/LOC on program), plus your payslips and future-spend notes. The grid below is a
+              read-only preview until data arrives.
+            </p>
+            <div class="budget-grid">
+              <label for="budIncomeNet">Net household income</label>
+              <input id="budIncomeNet" type="text" inputmode="decimal" placeholder="Fitzy fills from data" readonly />
+              <label for="budIncomeOther">Other income (rent/side/family support)</label>
+              <input id="budIncomeOther" type="text" inputmode="decimal" placeholder="Fitzy fills from data" readonly />
+              <label for="budHousing">Housing and utilities</label>
+              <input id="budHousing" type="text" inputmode="decimal" placeholder="Fitzy fills from data" readonly />
+              <label for="budLiving">Living costs (food, education, lifestyle)</label>
+              <input id="budLiving" type="text" inputmode="decimal" placeholder="Fitzy fills from data" readonly />
+              <label for="budTransport">Transport and vehicle costs</label>
+              <input id="budTransport" type="text" inputmode="decimal" placeholder="Fitzy fills from data" readonly />
+              <label for="budDebt">Debt commitments (cards/other loans)</label>
+              <input id="budDebt" type="text" inputmode="decimal" placeholder="Fitzy fills from data" readonly />
+              <label for="budIrregular">Irregular + future spends reserve</label>
+              <input id="budIrregular" type="text" inputmode="decimal" placeholder="Fitzy fills from data" readonly />
+            </div>
+            <div class="budget-actions">
+              <button type="button" id="budDemoFill" class="budget-btn">Demo: simulate Fitzy fill</button>
+              <button type="button" id="budCalc" class="budget-btn primary">Refresh totals</button>
+              <button type="button" id="budUseSurplus" class="budget-btn">Apply Fitzy surplus to GISI plan</button>
+            </div>
+            <div class="budget-summary">
+              <article class="budget-kpi">
+                <div class="kpi-label">Total income / month</div>
+                <div id="budTotalIncome" class="kpi-value">$0</div>
+              </article>
+              <article class="budget-kpi">
+                <div class="kpi-label">Total expenses / month</div>
+                <div id="budTotalExpense" class="kpi-value">$0</div>
+              </article>
+              <article class="budget-kpi">
+                <div class="kpi-label">Surplus / month</div>
+                <div id="budSurplusPm" class="kpi-value">$0</div>
+              </article>
+              <article class="budget-kpi">
+                <div class="kpi-label">Surplus / year</div>
+                <div id="budSurplusPa" class="kpi-value">$0</div>
+              </article>
+            </div>
+            <p class="plan-note">
+              Live product: totals refresh when Fitzy ingests your quarter. Use <strong>Demo: simulate Fitzy fill</strong> only to preview the UI.
+            </p>
+          </div>
+        </div>
+
+        <div class="fitzy-card">
+          <h3>Fitzy</h3>
+          <div class="fitzy-chat" aria-label="Fitzy chat">
+            <div id="fitzyMessages" class="fitzy-messages"></div>
+            <div class="fitzy-input-row">
+              <input id="fitzyInput" type="text" placeholder="Type a message…" autocomplete="off" />
+              <button type="button" id="fitzySend">Send</button>
+            </div>
+          </div>
+          <p class="plan-note" style="margin-top:10px;">
+            Demo replies only. Wire this tab to your AI backend when ready.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const panels = document.querySelectorAll(".panel");
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        tabButtons.forEach((btn) => btn.classList.remove("active"));
+        panels.forEach((panel) => panel.classList.remove("active"));
+        button.classList.add("active");
+        document.getElementById(button.dataset.tab).classList.add("active");
+      });
+    });
+
+    const rules = [
+      "Property value max 110% of median capital city price, LVR below 70%.",
+      "Household credit card limits max 5% of gross household salary.",
+      "Quarterly budget submitted via ASIC MoneySmart or equivalent.",
+      "Individual tax return lodged prior to December each year.",
+      "Wills in place for all borrowers.",
+      "Annual review fee paid on anniversary (discounts applied per rules met).",
+      "One referral per year to Mortgage House (converted to business).",
+      "DCA loan payments cannot exceed savings made to the GISI loan.",
+      "Concessional super contributions matched to salary/income (verified to NOA).",
+      "General insurance reviewed — review letter completed.",
+      "No other loans except HECS, SMSF LRBA, family loans or lender-approved exceptions.",
+      "Annual super contributions from home loan equal GISI savings or max CC cap.",
+      "Life, TPD, trauma and income protection insurance in place (needs analysis).",
+      "Extra payment above minimum P&I made to GISI loan every month.",
+      "Total debts (not limits) decreasing each year.",
+      "Tax plan completed by accountant annually.",
+      "Finance broker review completed annually.",
+      "Lawyer review completed annually.",
+      "20-question FITTER survey completed and signed off at 100%.",
+      "Opportunity cost calculator run and reviewed."
+    ];
+
+    const rulesList = document.getElementById("rulesList");
+    const rulesMet = document.getElementById("rulesMet");
+    const discountEarned = document.getElementById("discountEarned");
+    const feePayable = document.getElementById("feePayable");
+    const ruleMeter = document.getElementById("ruleMeter");
+
+    rules.forEach((text, index) => {
+      const label = document.createElement("label");
+      label.className = "rule-item";
+      label.innerHTML = `
+        <input type="checkbox" class="rule-check" />
+        <span><strong>${index + 1}.</strong> ${text}</span>
+      `;
+      rulesList.appendChild(label);
+    });
+
+    function currency(value) {
+      return new Intl.NumberFormat("en-AU", {
+        style: "currency",
+        currency: "AUD",
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    function updateRuleTracker() {
+      const met = document.querySelectorAll(".rule-check:checked").length;
+      const discount = Math.floor(met / 5) * 250;
+      const payable = Math.max(1000 - discount, 0);
+      const progress = (met / 20) * 100;
+
+      rulesMet.textContent = `${met} / 20`;
+      discountEarned.textContent = currency(discount);
+      feePayable.textContent = currency(payable);
+      ruleMeter.style.width = `${progress}%`;
+    }
+
+    rulesList.addEventListener("change", (event) => {
+      if (event.target.classList.contains("rule-check")) {
+        updateRuleTracker();
+      }
+    });
+    updateRuleTracker();
+
+    const fitCriteria = [
+      "Property value $1M-$1.5M",
+      "PAYG or small business",
+      "One home owner",
+      "Has or wants a family",
+      "30% equity",
+      "Open minded",
+      "Under 55",
+      "Frugal or wants to be",
+      "Stable income"
+    ];
+
+    const fitList = document.getElementById("fitList");
+    const yesCountEl = document.getElementById("yesCount");
+    const fitScoreEl = document.getElementById("fitScore");
+    const fitRatingEl = document.getElementById("fitRating");
+    const fitState = new Array(fitCriteria.length).fill(null);
+
+    fitCriteria.forEach((criterion, index) => {
+      const row = document.createElement("div");
+      row.className = "fit-row";
+      row.innerHTML = `
+        <div><strong>${index + 1}.</strong> ${criterion}</div>
+        <div class="fit-controls">
+          <button type="button" class="fit-btn" data-index="${index}" data-value="yes">Yes</button>
+          <button type="button" class="fit-btn" data-index="${index}" data-value="no">No</button>
+        </div>
+      `;
+      fitList.appendChild(row);
+    });
+
+    function getFitRating(score) {
+      if (score >= 85) return "Excellent Fit";
+      if (score >= 70) return "Strong Fit";
+      if (score >= 50) return "Moderate Fit";
+      return "Needs Review";
+    }
+
+    function updateFitScore() {
+      const yesCount = fitState.filter((item) => item === "yes").length;
+      const score = Math.round((yesCount / fitCriteria.length) * 100);
+      yesCountEl.textContent = `${yesCount} / ${fitCriteria.length}`;
+      fitScoreEl.textContent = `${score}%`;
+      fitRatingEl.textContent = getFitRating(score);
+    }
+
+    fitList.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!target.classList.contains("fit-btn")) return;
+
+      const index = Number(target.dataset.index);
+      const value = target.dataset.value;
+      fitState[index] = value;
+
+      const group = target.parentElement.querySelectorAll(".fit-btn");
+      group.forEach((btn) => btn.classList.remove("yes-active", "no-active"));
+      target.classList.add(value === "yes" ? "yes-active" : "no-active");
+
+      updateFitScore();
+    });
+    updateFitScore();
+
+    const FITZY_KEY = "diy_fitzy_member_v3";
+
+    function loadFitzyState() {
+      try {
+        const raw = localStorage.getItem(FITZY_KEY);
+        if (!raw) return null;
+        return JSON.parse(raw);
+      } catch {
+        return null;
+      }
+    }
+
+    function saveFitzyState(state) {
+      localStorage.setItem(FITZY_KEY, JSON.stringify(state));
+    }
+
+    function parseMoney(raw) {
+      if (raw == null || String(raw).trim() === "") return null;
+      const n = Number(String(raw).replace(/[^0-9.-]/g, ""));
+      return Number.isFinite(n) ? n : null;
+    }
+
+    function formatAud(n) {
+      if (n == null) return "—";
+      return new Intl.NumberFormat("en-AU", {
+        style: "currency",
+        currency: "AUD",
+        maximumFractionDigits: 0
+      }).format(n);
+    }
+
+    const planMarket = document.getElementById("planMarket");
+    const planDiyTotal = document.getElementById("planDiyTotal");
+    const planGisi = document.getElementById("planGisi");
+    const planLoc = document.getElementById("planLoc");
+    const planExtraPm = document.getElementById("planExtraPm");
+    const planQuarter = document.getElementById("planQuarter");
+    const planSave = document.getElementById("planSave");
+    const fitzyMessages = document.getElementById("fitzyMessages");
+    const fitzyInput = document.getElementById("fitzyInput");
+    const fitzySend = document.getElementById("fitzySend");
+    const budIncomeNet = document.getElementById("budIncomeNet");
+    const budIncomeOther = document.getElementById("budIncomeOther");
+    const budHousing = document.getElementById("budHousing");
+    const budLiving = document.getElementById("budLiving");
+    const budTransport = document.getElementById("budTransport");
+    const budDebt = document.getElementById("budDebt");
+    const budIrregular = document.getElementById("budIrregular");
+    const budCalc = document.getElementById("budCalc");
+    const budDemoFill = document.getElementById("budDemoFill");
+    const budUseSurplus = document.getElementById("budUseSurplus");
+    const btnFrolloStarted = document.getElementById("btnFrolloStarted");
+    const btnBrokerSendsData = document.getElementById("btnBrokerSendsData");
+    const brokerName = document.getElementById("brokerName");
+    const brokerEmail = document.getElementById("brokerEmail");
+    const brokerPermission = document.getElementById("brokerPermission");
+    const btnSaveBroker = document.getElementById("btnSaveBroker");
+    const btnCreateBrokerInvite = document.getElementById("btnCreateBrokerInvite");
+    const brokerInvitePreview = document.getElementById("brokerInvitePreview");
+    const brokerInviteStatus = document.getElementById("brokerInviteStatus");
+    const brokerMailto = document.getElementById("brokerMailto");
+    const budTotalIncome = document.getElementById("budTotalIncome");
+    const budTotalExpense = document.getElementById("budTotalExpense");
+    const budSurplusPm = document.getElementById("budSurplusPm");
+    const budSurplusPa = document.getElementById("budSurplusPa");
+    const evFiles = document.getElementById("evFiles");
+    const evTfnConfirm = document.getElementById("evTfnConfirm");
+    const evQueue = document.getElementById("evQueue");
+    const evApiNote = document.getElementById("evApiNote");
+    const evStatus = document.getElementById("evStatus");
+    const ingestMethod = document.getElementById("ingestMethod");
+
+    let fitzyState = loadFitzyState() || {
+      visited: false,
+      messages: [],
+      plan: {
+        market: "",
+        diyTotal: "",
+        gisi: "",
+        loc: "",
+        extraPm: "",
+        quarter: ""
+      },
+      budget: {
+        incomeNet: "",
+        incomeOther: "",
+        housing: "",
+        living: "",
+        transport: "",
+        debt: "",
+        irregular: ""
+      },
+      evidence: {
+        queuedAt: "",
+        files: [],
+        tfnConfirmed: false,
+        ingestMethod: "",
+        brokerProvidesQuarter: false
+      },
+      brokerInvite: {
+        brokerName: "",
+        brokerEmail: "",
+        permission: false,
+        inviteToken: "",
+        invitedAt: ""
+      }
+    };
+
+    if (!fitzyState.brokerInvite) {
+      fitzyState.brokerInvite = {
+        brokerName: "",
+        brokerEmail: "",
+        permission: false,
+        inviteToken: "",
+        invitedAt: ""
+      };
+      saveFitzyState(fitzyState);
+    }
+
+    function applyPlanToInputs() {
+      const p = fitzyState.plan || {};
+      planMarket.value = p.market ?? "";
+      planDiyTotal.value = p.diyTotal ?? "";
+      planGisi.value = p.gisi ?? "";
+      planLoc.value = p.loc ?? "";
+      planExtraPm.value = p.extraPm ?? "";
+      planQuarter.value = p.quarter ?? "";
+    }
+
+    function applyBudgetToInputs() {
+      const b = fitzyState.budget || {};
+      budIncomeNet.value = b.incomeNet ?? "";
+      budIncomeOther.value = b.incomeOther ?? "";
+      budHousing.value = b.housing ?? "";
+      budLiving.value = b.living ?? "";
+      budTransport.value = b.transport ?? "";
+      budDebt.value = b.debt ?? "";
+      budIrregular.value = b.irregular ?? "";
+    }
+
+    function computeBudget() {
+      const income =
+        (parseMoney(budIncomeNet.value) || 0) +
+        (parseMoney(budIncomeOther.value) || 0);
+      const expense =
+        (parseMoney(budHousing.value) || 0) +
+        (parseMoney(budLiving.value) || 0) +
+        (parseMoney(budTransport.value) || 0) +
+        (parseMoney(budDebt.value) || 0) +
+        (parseMoney(budIrregular.value) || 0);
+      const surplus = income - expense;
+      return { income, expense, surplus };
+    }
+
+    function renderBudgetSummary() {
+      const r = computeBudget();
+      budTotalIncome.textContent = formatAud(r.income);
+      budTotalExpense.textContent = formatAud(r.expense);
+      budSurplusPm.textContent = formatAud(r.surplus);
+      budSurplusPa.textContent = formatAud(r.surplus * 12);
+    }
+
+    function persistBudgetInputs() {
+      fitzyState.budget = {
+        incomeNet: budIncomeNet.value.trim(),
+        incomeOther: budIncomeOther.value.trim(),
+        housing: budHousing.value.trim(),
+        living: budLiving.value.trim(),
+        transport: budTransport.value.trim(),
+        debt: budDebt.value.trim(),
+        irregular: budIrregular.value.trim()
+      };
+      saveFitzyState(fitzyState);
+    }
+
+    function updateEvidenceStatus(text) {
+      evStatus.textContent = text;
+    }
+
+    function applyBrokerToInputs() {
+      const bi = fitzyState.brokerInvite || {};
+      brokerName.value = bi.brokerName ?? "";
+      brokerEmail.value = bi.brokerEmail ?? "";
+      brokerPermission.checked = Boolean(bi.permission);
+      if (bi.inviteToken && bi.invitedAt) {
+        showBrokerInvitePreview(bi);
+      }
+    }
+
+    function persistBrokerFields() {
+      fitzyState.brokerInvite = {
+        ...(fitzyState.brokerInvite || {}),
+        brokerName: brokerName.value.trim(),
+        brokerEmail: brokerEmail.value.trim(),
+        permission: brokerPermission.checked
+      };
+      saveFitzyState(fitzyState);
+    }
+
+    function generateInviteToken() {
+      try {
+        const bytes = new Uint8Array(12);
+        crypto.getRandomValues(bytes);
+        return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+      } catch {
+        return `demo-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+      }
+    }
+
+    function buildBrokerUploadUrl(token) {
+      if (window.location.protocol === "file:") {
+        return `https://diy-homeloan.example/member/upload?token=${token}`;
+      }
+      const base = `${window.location.origin}${window.location.pathname}`;
+      const sep = base.includes("?") ? "&" : "?";
+      return `${base}${sep}fitzy_broker_upload=1&token=${encodeURIComponent(token)}`;
+    }
+
+    function showBrokerInvitePreview(bi) {
+      const url = buildBrokerUploadUrl(bi.inviteToken);
+      brokerInvitePreview.style.display = "block";
+      brokerInvitePreview.textContent =
+        `Broker upload link (demo — replace with production URL):\n${url}\n\n` +
+        `Token: ${bi.inviteToken}\nCreated: ${bi.invitedAt}`;
+      brokerInviteStatus.textContent =
+        "Share this link only with your broker. Production builds should use expiring tokens, audit logs, and broker KYC.";
+      const brokerAddr = bi.brokerEmail || "";
+      const subj = encodeURIComponent("DIY Fitzy — upload budget evidence for my member");
+      const body = encodeURIComponent(
+        `Hi ${bi.brokerName || "there"},\n\n` +
+          `I authorise you to upload this quarter's budget evidence (statements, payslips with no TFN, etc.) to my DIY member area for Fitzy.\n\n` +
+          `Please use this link:\n${url}\n\n` +
+          `Thank you,\n[Member name]\n`
+      );
+      if (brokerAddr) {
+        brokerMailto.style.display = "inline-block";
+        brokerMailto.href = `mailto:${brokerAddr}?subject=${subj}&body=${body}`;
+      } else {
+        brokerMailto.style.display = "none";
+      }
+    }
+
+    function renderFitzyMessages() {
+      fitzyMessages.innerHTML = "";
+      fitzyState.messages.forEach((m) => {
+        const div = document.createElement("div");
+        div.className = `fitzy-msg ${m.role}`;
+        div.textContent = m.text;
+        fitzyMessages.appendChild(div);
+      });
+      fitzyMessages.scrollTop = fitzyMessages.scrollHeight;
+    }
+
+    function pushFitzy(text) {
+      fitzyState.messages.push({ role: "fitzy", text });
+      saveFitzyState(fitzyState);
+      renderFitzyMessages();
+    }
+
+    function pushUser(text) {
+      fitzyState.messages.push({ role: "user", text });
+      saveFitzyState(fitzyState);
+      renderFitzyMessages();
+    }
+
+    function fitzyReply(userText) {
+      const lower = userText.toLowerCase();
+      const budgetCue =
+        lower.includes("budget") ||
+        lower.includes("rule 3") ||
+        lower.includes("moneysmart") ||
+        lower.includes("statement") ||
+        lower.includes("payslip") ||
+        lower.includes("download") ||
+        lower.includes("cash spend");
+      if (budgetCue) {
+        return (
+          "Before I can really help with your budget, I need you onside: the result is only as good as you allow it to be. " +
+          "Start with Open Banking from this page (Frollo for You is a common path if you already know Frollo from your broker). " +
+          "I build the monthly budget from that feed plus payslips and future-spend notes — you do not type categories by hand. " +
+          "Every great journey starts with a step in the right direction; we refine each quarter. " +
+          "When I have finished your quarter, tap Apply Fitzy surplus to GISI plan, then Save plan snapshot."
+        );
+      }
+      if (lower.includes("frollo")) {
+        return (
+          "If you used Frollo for Brokers during a loan application, use Frollo for You for ongoing budgeting. " +
+          "Open it from the Connect Open Banking card on this page — new tab — then tell me when linking is underway."
+        );
+      }
+      if (lower.includes("broker") || lower.includes("jack")) {
+        return (
+          "If your broker already has your Open Banking or application-time money data, they can help Fitzy with this quarter’s budget. " +
+          "Add their email under Broker invite & permission, tick the authorisation box, then Create broker upload invite — that emails them a link to upload statements and payslips to your member area."
+        );
+      }
+      if (lower.includes("invite") || lower.includes("permission") || lower.includes("email")) {
+        return "Use the Broker invite & permission card: enter your broker’s email, tick authorisation, then Create broker upload invite. Fitzy only contacts your broker with your explicit consent.";
+      }
+      if (lower.includes("api") || lower.includes("open banking") || lower.includes("automated")) {
+        return "Most automated is best for quarterly rhythm. Use Open Banking (e.g. Frollo) from this page first; Fitzy can also use CSV/OFX, PDF conversion, or manual evidence when needed.";
+      }
+      if (lower.includes("which one") || lower.includes("tool") || lower.includes("app")) {
+        return "You get what you pay for. We can work with your preferred system. Choose your import method in the Evidence Inbox and I will tailor your quarterly workflow from there.";
+      }
+      if (lower.includes("hello") || lower === "hi" || lower.startsWith("hi ") || lower.startsWith("hey")) {
+        return "Hi — I am Fitzy. Say “budget” when you want Rule 3 hand-holding, or “rules” for your year-end checklist.";
+      }
+      if (lower.includes("rules") || lower.includes("checklist")) {
+        return "Open the DIY Home Loan tab for the full 20 rules. I usually start you on Rules 3 and 14, then line up tax, broker, lawyer, and insurance as the year unfolds.";
+      }
+      return "Noted. Your DIY rhythm hangs on quarterly budget (Rule 3), monthly extra to GISI (Rule 14), and LOC discipline matched to that surplus. Type “budget” for the full hand-holding intro.";
+    }
+
+    function bootstrapFitzy() {
+      applyPlanToInputs();
+      if (fitzyState.messages.length > 0) {
+        renderFitzyMessages();
+        return;
+      }
+      if (!fitzyState.visited) {
+        fitzyState.visited = true;
+        const extra = parseMoney(planExtraPm.value);
+        const extraLine =
+          extra != null
+            ? ` Your current surplus-to-GISI target is ${formatAud(extra)} per month from your latest budget.`
+            : "";
+        pushFitzy(
+          `Welcome to the Member area. I am Fitzy, your Master DIY Agent.${extraLine} ` +
+            `Your GISI + LOC picture is yours — not the example in the PDF. ` +
+            `To help you properly, I need you to work with me: the budget is only as good as you allow it to be.`
+        );
+        pushFitzy(
+          `Tip 1: connect Open Banking from this page — I will build your budget from that feed. ` +
+            `If you already saw Frollo through a broker, use Frollo for You for ongoing quarters. ` +
+            `Or add your broker’s email under Broker invite & permission so I can invite them to upload what they already have — with your explicit consent only. ` +
+            `You do not type the monthly budget grid; when I am done, apply surplus to GISI and Save.`
+        );
+      } else {
+        const q = fitzyState.plan?.quarter ? ` (${fitzyState.plan.quarter})` : "";
+        pushFitzy(
+          `Welcome back. Picking up where you left off${q}. ` +
+            `If this is a new quarter, refresh your budget figures and Save — your surplus to GISI may change. ` +
+            `What do you want to tackle: budget, rules checklist, or review prep?`
+        );
+      }
+      saveFitzyState(fitzyState);
+    }
+
+    planSave.addEventListener("click", () => {
+      fitzyState.plan = {
+        market: planMarket.value.trim(),
+        diyTotal: planDiyTotal.value.trim(),
+        gisi: planGisi.value.trim(),
+        loc: planLoc.value.trim(),
+        extraPm: planExtraPm.value.trim(),
+        quarter: planQuarter.value.trim()
+      };
+      saveFitzyState(fitzyState);
+      const pm = parseMoney(fitzyState.plan.extraPm);
+      const pa = pm != null ? pm * 12 : null;
+      const paText = pa != null ? ` That is about ${formatAud(pa)} per year to GISI from surplus.` : "";
+      pushFitzy(`Plan snapshot saved.${paText}`);
+    });
+
+    budDemoFill.addEventListener("click", () => {
+      fitzyState.budget = {
+        incomeNet: "9800",
+        incomeOther: "400",
+        housing: "3100",
+        living: "2300",
+        transport: "900",
+        debt: "500",
+        irregular: "1200"
+      };
+      applyBudgetToInputs();
+      persistBudgetInputs();
+      renderBudgetSummary();
+      pushFitzy(
+        "Demo only: I have simulated populated budget lines. In production this grid fills from Open Banking and your evidence."
+      );
+    });
+
+    budCalc.addEventListener("click", () => {
+      persistBudgetInputs();
+      renderBudgetSummary();
+      const r = computeBudget();
+      pushFitzy(
+        `Totals refreshed. Monthly surplus is ${formatAud(r.surplus)} (${formatAud(r.surplus * 12)} per year). ` +
+          `When this is your real Fitzy result, apply it to GISI.`
+      );
+    });
+
+    btnFrolloStarted.addEventListener("click", () => {
+      ingestMethod.value = "frollo";
+      fitzyState.evidence = { ...(fitzyState.evidence || {}), ingestMethod: "frollo" };
+      saveFitzyState(fitzyState);
+      pushFitzy(
+        "Good. Complete account linking in Frollo, then export or share data to Fitzy per your broker workflow. " +
+          "I will build your budget from that feed plus anything you queue in the Evidence Inbox."
+      );
+    });
+
+    btnSaveBroker.addEventListener("click", () => {
+      persistBrokerFields();
+      brokerInviteStatus.textContent = "Broker details saved.";
+      pushFitzy("Saved your broker details. When you are ready, tick permission and create the upload invite.");
+    });
+
+    btnCreateBrokerInvite.addEventListener("click", () => {
+      persistBrokerFields();
+      const email = brokerEmail.value.trim();
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!brokerPermission.checked) {
+        brokerInviteStatus.textContent = "Create invite blocked: please tick authorisation first.";
+        pushFitzy("I need your explicit permission before I can involve your broker. Tick the authorisation box, then try again.");
+        return;
+      }
+      if (!emailOk) {
+        brokerInviteStatus.textContent = "Create invite blocked: enter a valid broker email.";
+        pushFitzy("Please enter your broker’s email so we can send them the secure upload invite.");
+        return;
+      }
+      const token = generateInviteToken();
+      const invitedAt = new Date().toISOString();
+      fitzyState.brokerInvite = {
+        ...fitzyState.brokerInvite,
+        brokerName: brokerName.value.trim(),
+        brokerEmail: email,
+        permission: true,
+        inviteToken: token,
+        invitedAt
+      };
+      saveFitzyState(fitzyState);
+      showBrokerInvitePreview(fitzyState.brokerInvite);
+      brokerInviteStatus.textContent = "Invite created. Use “Open email to broker” or copy the link above.";
+      pushFitzy(
+        "Invite ready. Your broker can use the link to upload this quarter’s evidence to your member area. " +
+          "That helps you both: stronger ongoing relationship, and they see how DIY supports you — useful when they explain DIY to other clients."
+      );
+    });
+
+    btnBrokerSendsData.addEventListener("click", () => {
+      fitzyState.evidence = {
+        ...(fitzyState.evidence || {}),
+        brokerProvidesQuarter: true,
+        brokerNotedAt: new Date().toISOString()
+      };
+      saveFitzyState(fitzyState);
+      pushFitzy(
+        "Noted: your broker will supply this quarter’s money data to Fitzy. You should not need to re-link the same Open Banking setup if they already have it. " +
+          "I will wait for their pack and only ask you for gaps."
+      );
+    });
+
+    budUseSurplus.addEventListener("click", () => {
+      const r = computeBudget();
+      planExtraPm.value = String(Math.round(r.surplus));
+      fitzyState.plan = {
+        ...fitzyState.plan,
+        extraPm: planExtraPm.value
+      };
+      saveFitzyState(fitzyState);
+      pushFitzy(`Done. I have set your plan surplus-to-GISI to ${formatAud(r.surplus)} per month.`);
+    });
+
+    evQueue.addEventListener("click", () => {
+      const fileList = Array.from(evFiles.files || []);
+      if (fileList.length === 0) {
+        updateEvidenceStatus("Please select at least one file before queueing.");
+        return;
+      }
+      if (!evTfnConfirm.checked) {
+        updateEvidenceStatus("Upload rejected: confirm TFN redaction first.");
+        pushFitzy(
+          "I cannot accept this upload yet. Please remove/redact all TFNs and re-submit. " +
+            "This is required for privacy obligations under the Privacy Act and TFN handling rules."
+        );
+        return;
+      }
+
+      fitzyState.evidence = {
+        queuedAt: new Date().toISOString(),
+        files: fileList.map((f) => ({ name: f.name, size: f.size, type: f.type || "unknown" })),
+        tfnConfirmed: true,
+        ingestMethod: ingestMethod.value || fitzyState.evidence?.ingestMethod || ""
+      };
+      saveFitzyState(fitzyState);
+      updateEvidenceStatus(`Queued ${fileList.length} file(s) to Fitzy intake (local demo queue).`);
+      pushFitzy(
+        `Thanks. I have queued ${fileList.length} file(s). Next I will estimate net income from payslips, ` +
+          `then map statements and irregular spends into your quarterly budget.`
+      );
+    });
+
+    evApiNote.addEventListener("click", () => {
+      pushFitzy(
+        "Open Banking (e.g. Frollo from the card above) is the lightest quarterly path. Program GISI/LOC can also use lender APIs when on the White Label product."
+      );
+    });
+
+    ingestMethod.addEventListener("change", () => {
+      fitzyState.evidence = {
+        ...(fitzyState.evidence || {}),
+        ingestMethod: ingestMethod.value
+      };
+      saveFitzyState(fitzyState);
+
+      const map = {
+        "frollo": "Frollo selected. Use the Connect Open Banking card, complete linking, then I will ingest your quarter.",
+        "api": "Open Banking/API selected. Most automated path for quarterly budgeting.",
+        "bank-csv": "Good choice. Export CSV/OFX from your bank and upload each quarter.",
+        "pdf-convert": "Works fine. Converter path is acceptable when direct exports are not available.",
+        "manual": "Manual path selected. Fitzy will work from uploads each quarter."
+      };
+      pushFitzy(map[ingestMethod.value] || "Import method updated.");
+    });
+
+    function sendFitzy() {
+      const text = fitzyInput.value.trim();
+      if (!text) return;
+      fitzyInput.value = "";
+      pushUser(text);
+      setTimeout(() => pushFitzy(fitzyReply(text)), 200);
+    }
+
+    fitzySend.addEventListener("click", sendFitzy);
+    fitzyInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendFitzy();
+    });
+
+    document.querySelector('[data-tab="member"]').addEventListener("click", () => {
+      bootstrapFitzy();
+      applyBudgetToInputs();
+      applyBrokerToInputs();
+      renderBudgetSummary();
+      ingestMethod.value = fitzyState.evidence?.ingestMethod || "";
+      if (fitzyState.evidence?.files?.length) {
+        updateEvidenceStatus(`Last queue: ${fitzyState.evidence.files.length} file(s) ready for Fitzy.`);
+      }
+    });
+
+    if (document.getElementById("member").classList.contains("active")) {
+      bootstrapFitzy();
+      applyBudgetToInputs();
+      applyBrokerToInputs();
+      renderBudgetSummary();
+      ingestMethod.value = fitzyState.evidence?.ingestMethod || "";
+      if (fitzyState.evidence?.files?.length) {
+        updateEvidenceStatus(`Last queue: ${fitzyState.evidence.files.length} file(s) ready for Fitzy.`);
+      }
+    }
+  </script>
+</body>
+</html>
